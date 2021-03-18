@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.calculator.calculatorkotlin.viewModel.CalculatorVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#70E874"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:weightSum="2">
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/TextStyle"
+            android:id="@+id/tv_direction_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1. Direction info"
+            android:inputType="numberDecimal"
+            android:padding="16dp"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/TextStyle"
+            android:id="@+id/tv_x"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text='@{viewModel.directionOne.x+""}'
+            tools:text="@string/hint_input_y"
+            android:inputType="numberDecimal"
+            android:padding="16dp"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toStartOf="@+id/tv_y"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_direction_one"
+            />
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/TextStyle"
+            android:id="@+id/tv_y"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text='@{viewModel.directionOne.y+""}'
+            tools:text="@string/hint_input_y"
+            android:inputType="numberDecimal"
+            android:padding="16dp"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_x"
+            app:layout_constraintTop_toBottomOf="@id/tv_direction_one"
+            />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#213C02"
+            app:layout_constraintTop_toBottomOf="@+id/tv_y"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_direction_two"
+            style="@style/TextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:padding="16dp"
+            android:text="2. Direction info"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_x_2"
+            style="@style/TextStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:padding="16dp"
+            android:text='@{viewModel.directionTwo.x+""}'
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_direction_two"
+            app:layout_constraintEnd_toStartOf="@+id/tv_y_2"
+            tools:text="@string/hint_input_y" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_y_2"
+            style="@style/TextStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:padding="16dp"
+            android:text='@{viewModel.directionTwo.y+""}'
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_x_2"
+            app:layout_constraintTop_toBottomOf="@id/tv_direction_two"
+            tools:text="@string/hint_input_y" />
+
+        <View
+            android:id="@+id/view_2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#213C02"
+            app:layout_constraintTop_toBottomOf="@+id/tv_y_2"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_calculate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#034506"
+            android:text="@string/btn_calculate"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:layout_marginTop="8dp"
+            android:onClick="@{()->viewModel.onCalculateBtnListener()}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_y_2"
+            app:layout_constraintEnd_toStartOf="@+id/btn_cancel"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#034506"
+            android:text="@string/btn_cancel"
+            android:textAllCaps="false"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/white"
+            android:onClick="@{()->viewModel.onCancelBtnListener()}"
+            app:layout_constraintStart_toEndOf="@+id/btn_calculate"
+            app:layout_constraintTop_toBottomOf="@+id/tv_y_2"
+            app:layout_constraintEnd_toStartOf="@+id/btn_save"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#034506"
+            android:text="@string/btn_save"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:visibility="gone"
+            android:onClick="@{()->viewModel.onSaveBtnListener()}"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btn_cancel"
+            app:layout_constraintTop_toBottomOf="@+id/tv_y_2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

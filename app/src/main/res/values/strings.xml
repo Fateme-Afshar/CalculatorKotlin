@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">CalculatorKotlin</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hint_input_x">input x</string>
+    <string name="hint_input_y">input y</string>
+    <string name="btn_add">add</string>
+    <string name="btn_cancel">cancel</string>
+    <string name="btn_calculate">calculate</string>
+    <string name="btn_save">save</string>
+</resources>

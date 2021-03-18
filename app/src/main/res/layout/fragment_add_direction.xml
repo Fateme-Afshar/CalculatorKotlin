@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.calculator.calculatorkotlin.viewModel.AddDirectionVM" />
+
+        <variable
+            name="fragment"
+            type="com.calculator.calculatorkotlin.view.fragment.AddDirectionFragment" />
+    </data>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#8EAE8F"
+            android:orientation="vertical"
+            android:weightSum="2"
+            android:gravity="center"
+            tools:context=".view.fragment.AddDirectionDialogFragment">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ed_x"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:padding="16dp"
+                    android:background="@drawable/bg_border_gray_solid"
+                    android:hint="@string/hint_input_x"
+                    android:afterTextChanged="@{viewModel::afterTextChangedX}"
+                    android:textColor="@color/black"
+                    android:inputType="numberDecimal" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ed_y"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:padding="16dp"
+                    android:afterTextChanged="@{viewModel::afterTextChangedY}"
+                    android:background="@drawable/bg_border_gray_solid"
+                    android:hint="@string/hint_input_y"
+                    android:textColor="@color/black"
+                    android:inputType="numberDecimal" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:backgroundTint="#034506"
+                    android:onClick="@{()->viewModel.addDirectionModel()+fragment.dismiss()}"
+                    android:text="@string/btn_add"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:backgroundTint="#034506"
+                    android:text="@string/btn_cancel"
+                    android:textAllCaps="false"
+                    android:onClick="@{()->fragment.dismiss()}"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+        </LinearLayout>
+</layout>
