@@ -18,6 +18,8 @@ class HomeFragment : BaseFragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var viewModel:HomeVM
 
+    private var selectionDirectionIds= mutableListOf<Int>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -32,8 +34,13 @@ class HomeFragment : BaseFragment() {
 
         baseVM.getSelectionDirections().observe(this, Observer<List<DirectionModel>>{t: List<DirectionModel>? ->
             if (t!=null){
-                if(t.size==2)
-                    binding.btnCalculate.visibility=View.VISIBLE
+                if(t.size==2) {
+                    binding.btnCalculate.visibility = View.VISIBLE
+                    selectionDirectionIds.apply {
+                        this.add(t[0].id)
+                        this.add(t[1].id)
+                    }
+                }
                 else
                     binding.btnCalculate.visibility=View.GONE
             }
@@ -58,7 +65,7 @@ class HomeFragment : BaseFragment() {
     }
 
     fun onCalculateBtnClickListener(){
-        var calculateDialogFragment=CalculateDialogFragment()
+        var calculateDialogFragment=CalculateDialogFragment.newInstance(selectionDirectionIds[0],selectionDirectionIds[1])
 
         calculateDialogFragment.show(childFragmentManager,"calculateFragmentTag")
     }

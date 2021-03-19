@@ -9,6 +9,15 @@ class CalculatorRepository private constructor(var context: Context) : IReposito
     private var database=CalculatorDatabase.getInstance(context.applicationContext)
     private var calculatorDao=database.calculatorDao()
 
+    companion object {
+        private var instance: CalculatorRepository? = null
+        fun getInstance(context: Context): CalculatorRepository {
+            if (instance == null)
+                instance = CalculatorRepository(context)
+            return instance as CalculatorRepository
+        }
+    }
+
     override fun get(id: Int): LiveData<CalculateModel> {
         return calculatorDao.get(id)
     }
