@@ -26,6 +26,16 @@ class HomeFragment : BaseFragment() {
         viewModel.getDirectionList().observe(this,Observer<List<DirectionModel>>{t: List<DirectionModel>? ->
             if (t != null) {
                 setupAdapter(t)
+                binding.btnCalculate.visibility=View.GONE
+            }
+        })
+
+        baseVM.getSelectionDirections().observe(this, Observer<List<DirectionModel>>{t: List<DirectionModel>? ->
+            if (t!=null){
+                if(t.size==2)
+                    binding.btnCalculate.visibility=View.VISIBLE
+                else
+                    binding.btnCalculate.visibility=View.GONE
             }
         })
     }
@@ -45,6 +55,12 @@ class HomeFragment : BaseFragment() {
         var addDirectionFragment=AddDirectionFragment()
 
         addDirectionFragment.show(childFragmentManager,"addDirectionFragmentTag")
+    }
+
+    fun onCalculateBtnClickListener(){
+        var calculateDialogFragment=CalculateDialogFragment()
+
+        calculateDialogFragment.show(childFragmentManager,"calculateFragmentTag")
     }
 
     private fun setupAdapter(directionList: List<DirectionModel>){

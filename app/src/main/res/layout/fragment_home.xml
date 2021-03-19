@@ -37,7 +37,10 @@
             android:layout_alignParentRight="true"
             android:layout_margin="16dp"
             android:src="@drawable/ic_calculate"
-            app:maxImageSize="40dp" />
+            app:maxImageSize="40dp"
+            android:onClick="@{()->fragment.onCalculateBtnClickListener()}"
+            android:visibility="gone"
+            />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btn_calculates_model"

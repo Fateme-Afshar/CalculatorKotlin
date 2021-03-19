@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.calculator.calculatorkotlin.repository.DirectionRepository
 import com.calculator.calculatorkotlin.viewModel.BaseVM
 
  abstract class BaseFragment : Fragment() {
@@ -13,7 +14,7 @@ import com.calculator.calculatorkotlin.viewModel.BaseVM
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        baseVM=ViewModelProvider(this).get(BaseVM::class.java)
+        baseVM= BaseVM(DirectionRepository.getInstance(activity!!.applicationContext))
     }
 
     override fun onCreateView(

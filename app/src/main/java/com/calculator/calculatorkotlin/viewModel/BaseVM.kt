@@ -2,10 +2,11 @@ package com.calculator.calculatorkotlin.viewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.calculator.calculatorkotlin.model.DirectionModel
 import com.calculator.calculatorkotlin.repository.DirectionRepository
 
-class BaseVM(var repository: DirectionRepository):ViewModel() {
+class BaseVM(var repository: DirectionRepository):ViewModelProvider.Factory {
     private var selectionDirections=MutableLiveData<List<DirectionModel>>()
 
     fun deleteDirectionModel(directionModel: DirectionModel){
@@ -14,5 +15,9 @@ class BaseVM(var repository: DirectionRepository):ViewModel() {
 
     fun getSelectionDirections(): MutableLiveData<List<DirectionModel>> {
         return selectionDirections
+    }
+
+    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+        return BaseVM(repository) as T
     }
 }

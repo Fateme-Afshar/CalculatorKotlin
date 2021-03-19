@@ -5,12 +5,13 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.calculator.calculatorkotlin.model.CalculateModel
 import com.calculator.calculatorkotlin.model.DirectionModel
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-@Database(entities = [DirectionModel::class], version = 1)
-@TypeConverters
+@Database(entities = [DirectionModel::class,CalculateModel::class], version = 1)
+@TypeConverters(value = [Converter::class])
 abstract class CalculatorDatabase :RoomDatabase(){
     abstract fun directionDao(): DirectionDao
     abstract fun calculatorDao():CalculatorDao

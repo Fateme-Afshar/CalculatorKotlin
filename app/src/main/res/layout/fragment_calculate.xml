@@ -34,7 +34,6 @@
             android:id="@+id/tv_x"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text='@{viewModel.directionOne.x+""}'
             tools:text="@string/hint_input_y"
             android:inputType="numberDecimal"
             android:padding="16dp"
@@ -49,7 +48,6 @@
             android:id="@+id/tv_y"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text='@{viewModel.directionOne.y+""}'
             tools:text="@string/hint_input_y"
             android:inputType="numberDecimal"
             android:padding="16dp"
@@ -85,7 +83,6 @@
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
             android:padding="16dp"
-            android:text='@{viewModel.directionTwo.x+""}'
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_direction_two"
@@ -99,7 +96,6 @@
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
             android:padding="16dp"
-            android:text='@{viewModel.directionTwo.y+""}'
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tv_x_2"
@@ -122,7 +118,6 @@
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:layout_marginTop="8dp"
-            android:onClick="@{()->viewModel.onCalculateBtnListener()}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_y_2"
             app:layout_constraintEnd_toStartOf="@+id/btn_cancel"
@@ -137,7 +132,6 @@
             android:textAllCaps="false"
             android:layout_marginTop="8dp"
             android:textColor="@color/white"
-            android:onClick="@{()->viewModel.onCancelBtnListener()}"
             app:layout_constraintStart_toEndOf="@+id/btn_calculate"
             app:layout_constraintTop_toBottomOf="@+id/tv_y_2"
             app:layout_constraintEnd_toStartOf="@+id/btn_save"
@@ -152,7 +146,6 @@
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:visibility="gone"
-            android:onClick="@{()->viewModel.onSaveBtnListener()}"
             android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/btn_cancel"
