@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="calculator"
+            type="com.calculator.calculatorkotlin.model.CalculateModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:weightSum="3"
+        android:orientation="vertical">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_result"
+            style="@style/TextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:background="#ffff00"
+            android:gravity="center_horizontal"
+            android:textAlignment="center"
+            android:text='@{calculator.result+""}'
+            tools:text="1" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/TextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:text="X = 123456"
+                android:text='@{"x1 : "+calculator.listOfDirectionModel[0].x}'
+                />
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/TextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text='@{"y1 : "+calculator.listOfDirectionModel[0].y}' />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/TextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:text="X = 123456"
+                android:text='@{"x2 : "+calculator.listOfDirectionModel[1].x}'
+                />
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/TextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:text="X = 123456"
+                android:text='@{"y2 : "+calculator.listOfDirectionModel[1].y}'
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+</layout>

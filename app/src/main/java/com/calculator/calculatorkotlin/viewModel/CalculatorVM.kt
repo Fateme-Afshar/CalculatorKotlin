@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.calculator.calculatorkotlin.model.CalculateModel
 import com.calculator.calculatorkotlin.model.DirectionModel
 import com.calculator.calculatorkotlin.repository.CalculatorRepository
 import kotlin.math.pow
@@ -15,8 +16,15 @@ class CalculatorVM(
     var directionTwo: DirectionModel
 ) : ViewModelProvider.Factory {
     var result: Float=0.0f
-
+    private var directionList= mutableListOf<DirectionModel>()
     private var btnClickListener=MutableLiveData<String>()
+
+    init {
+        directionList.apply {
+            this.add(directionOne)
+            this.add(directionTwo)
+        }
+    }
 
     fun onCalculateBtnClickListener(){
         var resultRaw=sqrt(
@@ -29,6 +37,10 @@ class CalculatorVM(
         result=num.toFloat()
 
         btnClickListener.value=result.toString()
+    }
+
+    fun onSaveBtnClickListener(){
+        repository.insert(CalculateModel(directionList,result))
     }
 
     fun getBtnClickListener():LiveData<String>{

@@ -61,6 +61,7 @@
             android:layout_above="@+id/btn_items"
             android:layout_alignParentRight="true"
             android:layout_margin="16dp"
+            android:onClick="@{()->fragment.onListBtnClickListener()}"
             android:src="@drawable/ic_playlist"
             app:maxImageSize="40dp" />
 

@@ -29,7 +29,13 @@ class CalculateDialogFragment : DialogFragment() {
             )
         }
 
-        viewModel.getBtnClickListener().observe(this, Observer { result -> binding.btnCalculate.text=result })
+        viewModel.getBtnClickListener().observe(this, Observer {
+                result ->
+            run {
+                binding.btnCalculate.text = result
+                binding.btnSave.visibility = View.VISIBLE
+            }
+        })
     }
 
     override fun onCreateView(

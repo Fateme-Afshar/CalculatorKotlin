@@ -1,9 +1,7 @@
 package com.calculator.calculatorkotlin.view.fragment
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,7 +23,7 @@ class HomeFragment : BaseFragment() {
 
         viewModel= HomeVM(DirectionRepository.getInstance(activity!!.applicationContext))
 
-        viewModel.getDirectionList().observe(this,Observer<List<DirectionModel>>{t: List<DirectionModel>? ->
+        baseVM.getDirectionList().observe(this,Observer<List<DirectionModel>>{t: List<DirectionModel>? ->
             if (t != null) {
                 setupAdapter(t)
                 binding.btnCalculate.visibility=View.GONE
@@ -74,6 +72,18 @@ class HomeFragment : BaseFragment() {
         var calculateDialogFragment=CalculateDialogFragment.newInstance(selectionDirections[0],selectionDirections[1])
 
         calculateDialogFragment.show(childFragmentManager,"calculateFragmentTag")
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.main_menu,menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId==R.id.menu_delete_all){
+            baseVM.deleteAll()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun setupAdapter(directionList: List<DirectionModel>){
