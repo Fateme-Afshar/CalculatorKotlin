@@ -29,6 +29,11 @@ class HomeFragment : BaseFragment() {
             if (t != null) {
                 setupAdapter(t)
                 binding.btnCalculate.visibility=View.GONE
+
+                if(t.isEmpty())
+                    binding.animationView.visibility=View.VISIBLE
+                else
+                    binding.animationView.visibility=View.GONE
             }
         })
 

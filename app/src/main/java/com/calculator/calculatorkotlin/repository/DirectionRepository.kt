@@ -37,4 +37,8 @@ class DirectionRepository private constructor(context: Context) : IRepository<Di
     override fun update(directionModel: DirectionModel) {
         calculatorDatabase.executorDatabase.execute { directionDao.update(directionModel) }
     }
+
+    fun deleteAll(){
+        calculatorDatabase.executorDatabase.execute{directionDao.deleteAll()}
+    }
 }

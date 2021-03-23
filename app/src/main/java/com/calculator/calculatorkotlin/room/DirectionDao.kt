@@ -16,4 +16,7 @@ interface DirectionDao {
     fun delete(directionModel: DirectionModel)
     @Update
     fun update(directionModel: DirectionModel)
+
+    @Query(value = "delete from directionTable")
+    fun deleteAll();
 }

@@ -17,6 +17,10 @@ class BaseVM(var repository: DirectionRepository):ViewModelProvider.Factory {
         return selectionDirections
     }
 
+    fun deleteAll(){
+        repository.deleteAll()
+    }
+
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         return BaseVM(repository) as T
     }
