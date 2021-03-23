@@ -1,30 +1,41 @@
 package com.calculator.calculatorkotlin.viewModel
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.calculator.calculatorkotlin.model.DirectionModel
 import com.calculator.calculatorkotlin.repository.CalculatorRepository
-import com.calculator.calculatorkotlin.repository.DirectionRepository
+import kotlin.math.pow
+import kotlin.math.sqrt
 
-class CalculatorVM(var repository: CalculatorRepository,
-                   var directionRepository: DirectionRepository,
-                   var directionIdOne:Int=0,
-                   var directionIdTwo: Int=0) : ViewModelProvider.Factory {
-    lateinit var directionOne:DirectionModel
-    lateinit var directionTwo:DirectionModel
-    init {
-        directionRepository.get(directionIdOne).observeForever {
-            directionOne=it
-        }
+class CalculatorVM(
+    var repository: CalculatorRepository,
+    var directionOne: DirectionModel,
+    var directionTwo: DirectionModel
+) : ViewModelProvider.Factory {
+    var result: Float=0.0f
 
-        directionRepository.get(directionIdTwo).observeForever { directionTwo=it }
-    }
+    private var btnClickListener=MutableLiveData<String>()
 
     fun onCalculateBtnClickListener(){
+        var resultRaw=sqrt(
+            (directionTwo.x - directionOne.x).toDouble().pow(2.0) +
+                    (directionTwo.y - directionOne.y).toDouble().pow(2.0)
+        ).toFloat()
 
+        val num = String.format("%.2f", resultRaw)
+
+        result=num.toFloat()
+
+        btnClickListener.value=result.toString()
+    }
+
+    fun getBtnClickListener():LiveData<String>{
+        return btnClickListener;
     }
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return CalculatorVM(repository,directionRepository,directionIdOne,directionIdTwo) as T
+        return CalculatorVM(repository, directionOne, directionTwo) as T
     }
 }

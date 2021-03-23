@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "calculatorTable")
 data class CalculateModel(@ColumnInfo(name = "listDirModel") var listOfDirectionModel: List<DirectionModel>,
-                          @ColumnInfo(name = "result")var result:Float=0f){
+                          @ColumnInfo(name = "result")var result:Float=0f) {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     var id:Int=0

@@ -35,6 +35,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             tools:text="@string/hint_input_y"
+            android:text='@{viewModel.directionOne.x+""}'
             android:inputType="numberDecimal"
             android:padding="16dp"
             android:textColor="@color/black"
@@ -49,6 +50,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             tools:text="@string/hint_input_y"
+            android:text='@{viewModel.directionOne.y+""}'
             android:inputType="numberDecimal"
             android:padding="16dp"
             android:textColor="@color/black"
@@ -83,6 +85,7 @@
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
             android:padding="16dp"
+            android:text='@{viewModel.directionTwo.x+""}'
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_direction_two"
@@ -96,6 +99,7 @@
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
             android:padding="16dp"
+            android:text='@{viewModel.directionTwo.y+""}'
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tv_x_2"
@@ -115,6 +119,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="#034506"
             android:text="@string/btn_calculate"
+            android:onClick="@{()->viewModel.onCalculateBtnClickListener()}"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:layout_marginTop="8dp"
