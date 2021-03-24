@@ -21,28 +21,16 @@ class HomeFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel= HomeVM(DirectionRepository.getInstance(activity!!.applicationContext))
+        viewModel= HomeVM(DirectionRepository.getInstance(requireActivity().applicationContext))
 
-        baseVM.getDirectionList().observe(this,Observer<List<DirectionModel>>{t: List<DirectionModel>? ->
-            if (t != null) {
-                setupAdapter(t)
-                binding.btnCalculate.visibility=View.GONE
-
-                if(t.isEmpty())
-                    binding.animationView.visibility=View.VISIBLE
-                else
-                    binding.animationView.visibility=View.GONE
-            }
-        })
-
-        baseVM.getSelectionDirections().observe(this, Observer<List<DirectionModel>>{t: List<DirectionModel>? ->
-            if (t!=null){
-                if(t.size==2) {
+        baseVM.getSelectionDirections().observe(this, Observer<List<DirectionModel>>{directionModelList: List<DirectionModel>? ->
+            if (directionModelList!=null){
+                if(directionModelList.size==2) {
                     binding.btnCalculate.visibility = View.VISIBLE
                     selectionDirections.apply {
                         this.clear()
-                        this.add(t[0])
-                        this.add(t[1])
+                        this.add(directionModelList[0])
+                        this.add(directionModelList[1])
                     }
                 }
                 else
@@ -53,6 +41,18 @@ class HomeFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        baseVM.getDirectionList().observe(viewLifecycleOwner,Observer<List<DirectionModel>>{t: List<DirectionModel>? ->
+            if (t != null) {
+                setupAdapter(t)
+                binding.btnCalculate.visibility=View.GONE
+
+                if(t.isEmpty())
+                    binding.animationView.visibility=View.VISIBLE
+                else
+                    binding.animationView.visibility=View.GONE
+            }
+        })
     }
 
     override fun getFragmentView(

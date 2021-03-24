@@ -13,10 +13,10 @@ abstract class SingleFragmentActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val fragment: Fragment? = supportFragmentManager.findFragmentById(R.id.fragment_container)
+        val fragment: Fragment? = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
 
         if (fragment == null)
-            supportFragmentManager.beginTransaction().add(R.id.fragment_container, getFragment())
+            supportFragmentManager.beginTransaction().add(R.id.nav_host_fragment, getFragment())
                 .commit()
     }
 }
