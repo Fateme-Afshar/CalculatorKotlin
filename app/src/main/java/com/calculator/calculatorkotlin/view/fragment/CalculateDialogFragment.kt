@@ -13,12 +13,12 @@ import com.calculator.calculatorkotlin.model.DirectionModel
 import com.calculator.calculatorkotlin.repository.CalculatorRepository
 import com.calculator.calculatorkotlin.viewModel.CalculatorVM
 
-const val DIRECTION_ONE_ARGS = "directionOne"
-const val DIRECTION_TWO_ARGS = "directionTwo"
-
 class CalculateDialogFragment : DialogFragment() {
     private lateinit var binding: FragmentCalculateBinding
     private lateinit var viewModel:CalculatorVM
+
+     val DIRECTION_ONE_ARGS = "directionOne"
+     val DIRECTION_TWO_ARGS = "directionTwo"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +45,7 @@ class CalculateDialogFragment : DialogFragment() {
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_calculate, container, false)
         binding.viewModel=viewModel
+        binding.fragment=this
         return binding.root
     }
 

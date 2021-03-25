@@ -1,6 +1,7 @@
 package com.calculator.calculatorkotlin.viewModel
 
 import android.app.Application
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.calculator.calculatorkotlin.model.CalculateModel
@@ -8,13 +9,22 @@ import com.calculator.calculatorkotlin.repository.CalculatorRepository
 import org.apache.poi.hssf.usermodel.HSSFWorkbook
 import java.io.File
 import java.io.FileOutputStream
+import java.text.DateFormat
+import java.util.*
 
 
 class ShowListVM(private val calculatorRepository: CalculatorRepository,private val application: Application) : ViewModelProvider.Factory {
-    private val filePath: File = File(application.getExternalFilesDir("ExcelFile"), "test41.xls")
+    private lateinit var  filePath: File
     private var calculatorList = mutableListOf<CalculateModel>()
 
     fun onSaveBtnClickListener() {
+
+        if (calculatorList.size==0){
+            Toast.makeText(application,"nothing to save !!",Toast.LENGTH_LONG).show()
+            return
+        }
+
+        filePath= File(application.getExternalFilesDir("ExcelFile"), "Calculator__${randomNum(5000,1000)}.xls")
         val hssfWorkbook = HSSFWorkbook()
         val hssfSheet = hssfWorkbook.createSheet("Custom Sheet")
 
@@ -48,6 +58,10 @@ class ShowListVM(private val calculatorRepository: CalculatorRepository,private 
                 fileOutputStream.flush()
                 fileOutputStream.close()
             }
+
+            calculatorRepository.deleteAll()
+
+            Toast.makeText(application,"Save all successfully",Toast.LENGTH_LONG).show()
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -55,6 +69,10 @@ class ShowListVM(private val calculatorRepository: CalculatorRepository,private 
 
     fun setCalculateList(calculatorList: List<CalculateModel>) {
         this.calculatorList = calculatorList as MutableList<CalculateModel>
+    }
+
+    fun randomNum(max:Int,min:Int):Int{
+        return (Math.random() * (max-min+1)+min).toInt()
     }
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {

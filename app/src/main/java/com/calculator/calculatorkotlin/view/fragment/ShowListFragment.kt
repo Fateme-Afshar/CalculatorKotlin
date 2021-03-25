@@ -26,6 +26,11 @@ class ShowListFragment : BaseFragment() {
         baseVM.getCalculatedDirectionList().observe(this, Observer {
             viewModel.setCalculateList(it)
             setupAdapter(it)
+
+            if (it.isEmpty())
+                binding.animationView.visibility=View.VISIBLE
+            else
+                binding.animationView.visibility=View.GONE
         })
 
         viewModel= ShowListVM(CalculatorRepository.getInstance(requireContext()),requireActivity().application)
