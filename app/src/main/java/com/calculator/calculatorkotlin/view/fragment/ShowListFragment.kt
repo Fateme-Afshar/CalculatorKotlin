@@ -12,10 +12,13 @@ import com.calculator.calculatorkotlin.adapter.DirectionAdapter
 import com.calculator.calculatorkotlin.databinding.FragmentShowListBinding
 import com.calculator.calculatorkotlin.model.CalculateModel
 import com.calculator.calculatorkotlin.model.DirectionModel
+import com.calculator.calculatorkotlin.repository.CalculatorRepository
+import com.calculator.calculatorkotlin.viewModel.ShowListVM
 
 
 class ShowListFragment : BaseFragment() {
     private lateinit var binding: FragmentShowListBinding
+    private lateinit var viewModel:ShowListVM
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,6 +26,8 @@ class ShowListFragment : BaseFragment() {
         baseVM.getCalculatedDirectionList().observe(this, Observer {
             setupAdapter(it)
         })
+
+        viewModel= ShowListVM(CalculatorRepository.getInstance(requireContext()),requireActivity().application)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -30,7 +35,7 @@ class ShowListFragment : BaseFragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId==R.id.menu_save){
+        if (item.itemId==R.id.menu_remove){
             //TODO :  SAVE ALL IN FILE
             return true
         }
@@ -39,6 +44,7 @@ class ShowListFragment : BaseFragment() {
 
     override fun getFragmentView(inflater: LayoutInflater, container: ViewGroup?): View {
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_show_list,container,false)
+        binding.viewModel=viewModel
         return binding.root
     }
 
