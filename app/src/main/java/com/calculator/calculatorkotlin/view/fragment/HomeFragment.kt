@@ -80,7 +80,7 @@ class HomeFragment : BaseFragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId==R.id.menu_delete_all){
-            baseVM.deleteAll()
+            baseVM.deleteAllDirections()
             return true
         }
         return super.onOptionsItemSelected(item)

@@ -23,7 +23,7 @@ class CalculateDialogFragment : DialogFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            viewModel= CalculatorVM(CalculatorRepository.getInstance(activity!!.applicationContext), it.getSerializable(
+            viewModel= CalculatorVM(CalculatorRepository.getInstance(requireActivity().applicationContext), it.getSerializable(
                     DIRECTION_ONE_ARGS) as DirectionModel,
                 it.getSerializable(DIRECTION_TWO_ARGS) as DirectionModel
             )

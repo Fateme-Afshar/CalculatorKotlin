@@ -24,6 +24,7 @@ class ShowListFragment : BaseFragment() {
         super.onCreate(savedInstanceState)
 
         baseVM.getCalculatedDirectionList().observe(this, Observer {
+            viewModel.setCalculateList(it)
             setupAdapter(it)
         })
 
@@ -36,7 +37,7 @@ class ShowListFragment : BaseFragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId==R.id.menu_remove){
-            //TODO :  SAVE ALL IN FILE
+            baseVM.deleteAllCalculates()
             return true
         }
         return super.onOptionsItemSelected(item)
@@ -52,5 +53,9 @@ class ShowListFragment : BaseFragment() {
         var adapter= activity?.let { CalculatorAdapter(it,calculateList) }
         binding.recyclerView.adapter=adapter
         binding.recyclerView.layoutManager= LinearLayoutManager(activity)
+    }
+
+    fun showCreateNameFileDialogFragment(){
+
     }
 }

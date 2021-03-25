@@ -28,8 +28,12 @@ class BaseVM(private var repository: DirectionRepository,private var calculatorR
         return calculatorRepository.get()
     }
 
-    fun deleteAll(){
+    fun deleteAllDirections(){
         repository.deleteAll()
+    }
+
+    fun deleteAllCalculates(){
+        calculatorRepository.deleteAll()
     }
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {

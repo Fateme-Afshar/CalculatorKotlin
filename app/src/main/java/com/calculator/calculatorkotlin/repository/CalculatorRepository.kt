@@ -37,4 +37,8 @@ class CalculatorRepository private constructor(var context: Context) : IReposito
     override fun update(calculatorModel: CalculateModel) {
         database.executorDatabase.execute{calculatorDao.update(calculatorModel)}
     }
+
+    fun deleteAll(){
+        database.executorDatabase.execute{calculatorDao.deleteAll()}
+    }
 }

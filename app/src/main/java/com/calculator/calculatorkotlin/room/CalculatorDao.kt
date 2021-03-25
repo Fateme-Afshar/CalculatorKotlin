@@ -16,4 +16,6 @@ interface CalculatorDao {
     fun delete(calculateModel: CalculateModel)
     @Update
     fun update(calculateModel: CalculateModel)
+    @Query(value = "delete from calculatorTable")
+    fun deleteAll()
 }
